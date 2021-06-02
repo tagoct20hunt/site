@@ -46,6 +46,7 @@ function mapEntries(json, realrowlength, skip){
       
       $.each(scores, function(i, item){
           $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
+          console.log('<option value="' + item[0] + '" required>' + item[0] + '</option>');
           });
 
       $("#scoreboardContainer").append($table);
