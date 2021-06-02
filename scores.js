@@ -28,6 +28,7 @@ function mapEntries(json, realrowlength, skip){
       var scores = mapEntries(data, 11);
   
       var $table = $('<table id="scoreboard"/>');
+
       $.each(scores, function(i, item){
           var $tr = $('<tr />');
           $tr.appendTo($table);
@@ -42,5 +43,10 @@ function mapEntries(json, realrowlength, skip){
               }
           });
       });
+      
+      $.each(scores, function(i, item){
+          $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
+          });
+
       $("#scoreboardContainer").append($table);
   });
