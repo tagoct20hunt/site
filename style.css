@@ -188,3 +188,14 @@ table, tr, td {
     display: flex;
     flex-direction: row;
 }
+@media only screen and (max-width: 1400px) {
+    #test {
+        flex-direction: column;
+    }
+    #stagesEnter {
+        width: 100%;
+    }
+    #scoreboardContainer {
+        margin-left: 10px;
+    }
+}
