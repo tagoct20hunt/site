@@ -34,7 +34,7 @@ function mapEntries(json, realrowlength, skip){
           $tr.appendTo($table);
           $.each(item, function(a, subitem) {
               if(a != 0) 
-                if(subitem == 0) {
+                if(subitem == 0 || subitem == "#N/A") {
                   $tr.append('<td class="zero">'+ "-" + '</td>');
                 } else {
                 $tr.append('<td class="nonzero">'+ "-" + '</td>');
