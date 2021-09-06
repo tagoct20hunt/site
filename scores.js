@@ -66,4 +66,4 @@ function mapEntries(json, realrowlength, skip){
 
       $("#scoreboardContainer").append($table);
   });
-  */
+  */ // fuck
