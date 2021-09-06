@@ -23,7 +23,23 @@ function mapEntries(json, realrowlength, skip){
     
     return dataframe;
   }
-  var staticUrl = 'https://spreadsheets.google.com/feeds/cells/1VzZAFXFNr78Jtc6lTS84kbvAIoCSzK5JhiSgSkuL17w/2/public/full?alt=json';
+  var staticUrl = 'https://docs.google.com/spreadsheets/d/1Jf9pb8QTu4gk08pgIq12GefLTxbrHvDcBN9ZOI9OFqU/gviz/tq?tqx=out:json';
+  $.ajax({url: staticUrl, type: 'GET', dataType: 'text'})
+    .done(function(data) {
+    const r = data.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
+    if (r && r.length == 2) {
+      const obj = JSON.parse(r[1]);
+      const table = obj.table;
+      const header = table.cols.map(({label}) => label);
+      const rows = table.rows.map(({c}) => c.map(({v}) => v));
+
+    console.log(header);
+    console.log(rows);
+   }
+    })
+    .fail((e) => console.log(e.status));
+
+  /*
   $.getJSON(staticUrl, function(data) {
       var scores = mapEntries(data, 11);
   
@@ -50,3 +66,4 @@ function mapEntries(json, realrowlength, skip){
 
       $("#scoreboardContainer").append($table);
   });
+  */
