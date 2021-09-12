@@ -1,4 +1,4 @@
-function mapEntries(json, realrowlength, skip){
+/*function mapEntries(json, realrowlength, skip){
     if (!skip) skip = 0;
     var dataframe = new Array();
     
@@ -22,8 +22,9 @@ function mapEntries(json, realrowlength, skip){
     dataframe.push(row);
     
     return dataframe;
-  }
+  }*/
   var staticUrl = 'https://docs.google.com/spreadsheets/d/1Jf9pb8QTu4gk08pgIq12GefLTxbrHvDcBN9ZOI9OFqU/gviz/tq?tqx=out:json';
+  var scores = [];
   $.ajax({url: staticUrl, type: 'GET', dataType: 'text'})
     .done(function(data) {
     const r = data.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
@@ -33,37 +34,31 @@ function mapEntries(json, realrowlength, skip){
       const header = table.cols.map(({label}) => label);
       const rows = table.rows.map(({c}) => c.map(({v}) => v));
 
-    console.log(header);
     console.log(rows);
+    scores = rows;
    }
     })
     .fail((e) => console.log(e.status));
 
-  /*
-  $.getJSON(staticUrl, function(data) {
-      var scores = mapEntries(data, 11);
-  
-      var $table = $('<table id="scoreboard"/>');
+    var $table = $('<table id="scoreboard"/>');
 
-      $.each(scores, function(i, item){
-          var $tr = $('<tr />');
-          $tr.appendTo($table);
-          $.each(item, function(a, subitem) {
-              if(a != 0) 
-                if(subitem == 0 || subitem == "#N/A") {
-                  $tr.append('<td class="zero">'+ "-" + '</td>');
-                } else {
-                $tr.append('<td class="nonzero">'+ "-" + '</td>');
+    $.each(scores, function(i, item){
+        var $tr = $('<tr />');
+        $tr.appendTo($table);
+        $.each(item, function(a, subitem) {
+            if(a != 0) 
+              if(subitem == 0 || subitem == "#N/A") {
+                $tr.append('<td class="zero">'+ "-" + '</td>');
               } else {
-                $tr.append('<td class="teamtitle">'+ subitem + '</td>');
-              }
-          });
-      });
-      
-      $.each(scores, function(i, item){
-          $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
-          });
+              $tr.append('<td class="nonzero">'+ "-" + '</td>');
+            } else {
+              $tr.append('<td class="teamtitle">'+ subitem + '</td>');
+            }
+        });
+    });
+    
+    $.each(scores, function(i, item){
+        $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
+        });
 
-      $("#scoreboardContainer").append($table);
-  });
-  */ // fuck
+    $("#scoreboardContainer").append($table);
