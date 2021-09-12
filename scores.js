@@ -34,31 +34,34 @@
       const header = table.cols.map(({label}) => label);
       const rows = table.rows.map(({c}) => c.map(({v}) => v));
 
+    console.log("Spreadsheet retrieved");
     console.log(rows);
-    scores = rows;
+    pushTable(rows);
    }
     })
     .fail((e) => console.log(e.status));
 
-    var $table = $('<table id="scoreboard"/>');
+function pushTable(scores){
+  var $table = $('<table id="scoreboard"/>');
 
-    $.each(scores, function(i, item){
-        var $tr = $('<tr />');
-        $tr.appendTo($table);
-        $.each(item, function(a, subitem) {
-            if(a != 0) 
-              if(subitem == 0 || subitem == "#N/A") {
-                $tr.append('<td class="zero">'+ "-" + '</td>');
-              } else {
-              $tr.append('<td class="nonzero">'+ "-" + '</td>');
+  $.each(scores, function(i, item){
+      var $tr = $('<tr />');
+      $tr.appendTo($table);
+      $.each(item, function(a, subitem) {
+          if(a != 0) 
+            if(subitem == 0 || subitem == "#N/A") {
+              $tr.append('<td class="zero">'+ "-" + '</td>');
             } else {
-              $tr.append('<td class="teamtitle">'+ subitem + '</td>');
-            }
-        });
-    });
-    
-    $.each(scores, function(i, item){
-        $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
-        });
+            $tr.append('<td class="nonzero">'+ "-" + '</td>');
+          } else {
+            $tr.append('<td class="teamtitle">'+ subitem + '</td>');
+          }
+      });
+  });
+  
+  $.each(scores, function(i, item){
+      $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
+      });
 
-    $("#scoreboardContainer").append($table);
+  $("#scoreboardContainer").append($table);
+};
