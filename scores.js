@@ -1,28 +1,3 @@
-/*function mapEntries(json, realrowlength, skip){
-    if (!skip) skip = 0;
-    var dataframe = new Array();
-    
-    var row = new Array();
-    for (var i=0; i < json.feed.entry.length; i++) {
-  
-      var entry = json.feed.entry[i];
-      if (entry.gs$cell.col == '1') {
-        if (row != null) {
-          if ((!realrowlength || row.length === realrowlength) && (skip  === 0)){
-             dataframe.push(row);
-          } else {
-             if (skip > 0) skip--;
-          }
-        }
-  
-        var row = new Array();
-      }
-      row.push(entry.content.$t);
-    } 
-    dataframe.push(row);
-    
-    return dataframe;
-  }*/
   var staticUrl = 'https://docs.google.com/spreadsheets/d/1Jf9pb8QTu4gk08pgIq12GefLTxbrHvDcBN9ZOI9OFqU/gviz/tq?tqx=out:json';
   var scores = [];
   $.ajax({url: staticUrl, type: 'GET', dataType: 'text'})
