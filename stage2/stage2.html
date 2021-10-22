@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Stage 2
+    </title>
+  <link rel="shortcut icon" type="image/png" href="../favicon_stage.png"/>
+  <style>
+  body { margin-left: 3%; margin-right: 3%;}
+  div.headbox { border: groove; border-width: 2px; background: #F0F0E0; padding-top: 1%; padding-bottom: 1%; padding-left: 5px;}
+  div.headbox p { margin-top: 0.8em; margin-bottom: 0.8em; }
+  div.headbox h1 { margin-top: 0.2em; margin-bottom: 0.4em; }
+  div.headbox h2 { margin-top: 0.2em; margin-bottom: 0.4em; }
+  div#question1 {float:left;}
+  div#minesweeper {padding:20px; margin: 20px;}
+  div#minesweeper table, div#minesweeper tr, div#minesweeper td {border: 1px solid black}
+  div#minesweeper td {width:1.4em; height:1.4em; text-align:center; font-family:monospace; font-size: 1.4em}
+  div#minesweeper tr:first-child td {border-color: white white black white;}
+  div#minesweeper td:first-child {border-color: white black white white;}
+  div#minesweeper tr:first-child td:first-child {border-color: white white white white;}
+  div#minesweeper table {border-collapse: collapse;}
+  </style>
+</head>
+<body>
+  <div class="headbox">
+    <table cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <h1>Scavenger Hunt Stage Two</h1>
+              <p>
+                Authors:
+                <br/>
+                <small>
+                  Jack
+                </small>
+              </p>
+              <small>
+                <a href="../index.html">> Return to stage entry</a>
+              </small>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="question1">
+    <h2>
+      1. Complete the following table.
+    </h2>
+    <span>Minesweeper rules apply.
+    </br>
+    <div id="minesweeper">
+
+    </div>
+  </div>
+  <div id="question2">
+    <h2>
+      2. Answer the question provided.
+    </h2>
+    <span>Fill in the table. Minesweeper rules apply.</span>
+    Find the absolute maximum of the multivariable function <span style="font-family:monospace">f(x,y) = -(x+α)² - (y-γ)² + β/δ</span>.
+    <br>
+    <span style="font-family:monospace">α, β, γ, and δ</span> are found by counting the number of mines in the symbol's respective row or column.
+    <br>
+    Enter your answer as an ordered triple in the format (x,y,z), where x, y, and z are integers. [No spaces.]
+    <br>
+    <br>
+    Resources
+    <ol style="list-style-position: inside; margin:0px;">
+      <li>
+        <a href="https://c3d.libretexts.org/CalcPlot3D/index.html">Graphing tool</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=TrcCbdWwCBc&list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7">For those unfamiliar with multivariable calculus</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">For those familiar with multivariable calculus</a>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
+<script>
+  function createTable(tableData) {
+  var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    rowData.forEach(function(cellData) {
+      var cell = document.createElement('td');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+    });
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  document.getElementById("minesweeper").appendChild(table);
+}
+
+  const minesweeper=[
+    ["","","","","","","","β","","","","","","","","","","","","","δ",""],
+    [""," "," "," "," ","3","2"," ","4"," "," ","3","2"," ","1"," ","2"," "," "," "," ","1"],
+    ["γ","1","3"," "," "," "," "," "," "," "," "," "," "," "," "," "," ","3"," ","2","1"," "],
+    [""," ","5","5","4","3","3","5"," "," ","5"," ","5"," "," ","4","1"," "," ","1"," "," "],
+    [""," "," "," "," "," "," "," "," "," ","4"," "," ","6"," ","3"," "," ","0"," "," ","1"],
+    [""," "," ","4","4"," "," "," "," ","3","3"," "," ","6"," "," "," ","1"," ","2"," "," "],
+    ["","1"," ","2"," "," "," ","6"," "," ","2"," "," "," ","4"," ","2","2"," "," "," "," "],
+    ["","2","3","3"," "," "," "," ","2","2"," "," ","3"," "," "," "," ","3"," "," ","4","2"],
+    [""," "," "," ","2"," "," "," ","3"," "," "," "," "," "," ","4"," "," "," ","3"," "," "],
+    [""," ","4"," "," ","3"," "," ","2"," "," ","1"," "," "," "," ","3","3","3","2","4"," "],
+    ["","2"," ","4"," "," "," "," ","2"," ","0"," "," "," ","4"," ","4"," "," "," ","3"," "],
+    [""," ","5"," "," "," ","3"," "," "," "," ","2"," "," ","3"," ","5"," "," ","2"," "," "],
+    ["","3"," "," "," ","1"," "," "," ","1","1","2"," ","3"," "," "," "," ","4"," "," "," "],
+    [""," "," ","2","2"," "," ","3"," ","1"," "," "," ","2"," "," "," "," "," "," ","4"," "],
+    ["","1"," "," ","1"," "," "," "," "," ","3"," "," ","2"," ","3","3","3"," ","1"," "," "],
+    ["","1"," "," "," "," "," "," ","4"," "," "," "," "," "," "," "," "," "," ","3","3"," "],
+    [""," ","2","2","3"," ","3"," "," "," "," ","3"," ","0"," ","3"," ","4"," "," "," "," "],
+    [""," "," ","3"," "," "," "," "," ","6","4"," "," "," ","2"," ","1"," "," ","5"," "," "],
+    ["α"," "," "," ","3","3","3","3"," "," "," "," ","1","2"," "," ","3","3"," "," "," ","1"],
+    ["","2"," ","2"," "," "," "," ","1"," ","3"," "," "," "," "," "," "," "," ","0"," "," "]
+  ];
+  createTable(minesweeper);
+</script>
