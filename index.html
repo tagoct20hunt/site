@@ -7,6 +7,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 <link rel="stylesheet" href="style.css">
+<style>
+    #stagesEnter span {cursor: pointer; text-decoration:underline;}
+</style>
 </head>
 
 <body>
@@ -23,10 +26,10 @@
                 <div style="background-color:#0000ff; width:100%; height:1px; margin-bottom: 12px;"></div>
                 <span>
                 <strong>
-                    OCTOBER 20TH, 2021 - THE GREAT SCAVENGER HUNT
+                    OCTOBER 20TH, 2022 - THE GREAT SCAVENGER HUNT
                 </strong>
                 </br>
-                Welcome to the official TAG scavenger hunt, 2021! 
+                Welcome to the official TAG scavenger hunt, <b>2022!</b> 
                 This event will run from October 20th through October 31st, but can be extended at request.
                 You have until the end date to complete all 5 stages.
                 Thank you to <a href="https://pages.github.com/">Github Pages</a> for hosting our site!
@@ -39,28 +42,28 @@
                 </strong>
                 </br>
             </span>
-            <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdnD2NL_6QJy9n4uFlzIxyjYD_T0fDF1-5h20UkeifE0y5CTQ/formResponse" method="POST" target="hidden_iframe" 
+            <form action="" method="POST" target="hidden_iframe" 
             onsubmit="submitted=true;">
                 <div id="test">
                         <div id="stagesEnter">
                                 <div>
-                                    <a href="./stage1/stage1.html">Stage 1</a> </br>
+                                    <span onclick="PlaySound('nggyu')">Stage 1</a> </br>
                                     <input type="text" name="entry.684394994">
                                 </div>
                                 <div>
-                                    <a href="./stage2/stage2.html">Stage 2</a> </br>
+                                    <span onclick="PlaySound('nggyu')">Stage 2</a> </br>
                                     <input type="text" name="entry.554699986">
                                 </div>
                                 <div>
-                                    <a href="./stage3/stage3.html">Stage 3</a> </br>
+                                    <span onclick="PlaySound('nggyu')">Stage 3</a> </br>
                                     <input type="text" name="entry.608187336">
                                 </div>
                                 <div>
-                                    <a href="./stage4/stage4.html">Stage 4</a> </br>
+                                    <span onclick="PlaySound('nggyu')">Stage 4</a> </br>
                                     <input type="text" name="entry.1612735257">
                                 </div>
                                 <div>
-                                    <a href="./stage5/stage5.html">Stage 5</a> </br>
+                                    <span onclick="PlaySound('nggyu')">Stage 5</a> </br>
                                     <input type="text" name="entry.962568321">
                                 </div>
                         </div>
@@ -85,10 +88,19 @@
         </div>           
     </div>
     <script type="text/javascript">var submitted=false;</script>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"     
-    onload="if(submitted) {window.location='';}"></iframe>
+    <script>
+      function PlaySound(melody) {
+            var path = "sounds/"
+            var snd = new Audio(path + melody + ".mp3");
+            snd.play();
+            
+            var tag = document.createElement("p");
+            var text = document.createTextNode("L + ratio");
+            tag.appendChild(text);
+            var element = document.getElementById("scoreboardContainer");
+            element.appendChild(tag);
+        }
+    </script>
 </body>
 <script src="timeanddate.js"></script>
-<script src="scores.js"></script>
-
 </html>
