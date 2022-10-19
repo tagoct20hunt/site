@@ -1,43 +1,58 @@
-<HTML>
 <!DOCTYPE html>
-<html lang="en">
-<title> October 20th Slide 6 </title>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script defer src="script.js"></script>
-  <style>
-    body {
-      margin: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    #evil-button {
-      position: absolute;
-      white-space: nowrap;
-      font-size: 2rem;
-    }
-  </style>
+    <title>
+        home - widemax
+    </title>
+	<link rel="shortcut icon" type="image/png" href="./favicon.png"/>
+	<style>
+		body {
+			font: 1.1em/1.5em sans-serif;
+			max-width: 55em;
+			margin: 1em auto;
+			padding: 0 .6em;
+		}
+		small {
+			font: 1.0em/1.0em serif;
+		}
+		div {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		marquee {
+			width: 50%;
+			behavior: alternate;
+		}
+	</style>
 </head>
 <body>
-  <button id="evil-button">Oct 20 Answer</button>
+	
+	<div>
+		<img src="wip.gif">
+		<br>
+		<marquee><h1>under construction...</h1></marquee>
+	</div>
+	<hr>
+	<p>
+	Big things are happening this year: the official Tag Scavenger Hunt resumes on October 20th. Stay tuned for more information - we hope you choose to participate.
+	</p>
+	<p>
+	For the unfamiliar with the October 20th tradition, or those who chose not to participate in past years, an archive of the last two years is documented below.
+	</p>
+	<details>
+		<summary><a href="https://docs.google.com/presentation/d/1xU2O-bG7dbKGtdHqYAbjDTgSZGdo3hyqCXRV4mwETvY/edit#slide=id.p">2020</a></summary>
+		<span>A google slide-based puzzle in which successive slides add together to form a bit.ly link leading to the next stage. 10 stages, the last of which is yet unsolved.</span>
+	</details>
+	<details>
+		<summary><a href="./2021/">2021</a></summary>
+		<span>A static site with (mostly) contained single-page puzzles, designed with a final entry in mind. 5 stages, of which 3 and 5 remain unsolved.</span>
+	</details>
+	<p>
+	Until then, take care,<br>
+		<small><i>
+		Jack and Maxim
+		</i></small>
+	</p>
 </body>
-<script type="text/javascript" src="script.js"
-//If you're reading this it's too late
-    var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
-
-    var i = 1;
-
-    window.setInterval(function(){
-        document.body.style.backgroundColor = colors[i];
-        i++;
-        if (i === colors.length){
-            i=0;
-        }
-    }, 1000);
-</script>
 </html>
