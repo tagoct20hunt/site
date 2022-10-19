@@ -30,6 +30,19 @@
                 float: right;
                 filter: drop-shadow(0 0 0.5em rgba(255, 69, 0, 1));
             }
+            .nonzero {
+                color: red;
+            }
+            .flex-row {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                width: 100%;
+            }
+            #scoreboardContainer {
+                margin-left: auto;
+                margin-right: 0px;
+            }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
@@ -52,53 +65,58 @@
         <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdnD2NL_6QJy9n4uFlzIxyjYD_T0fDF1-5h20UkeifE0y5CTQ/formResponse" method="POST" target="hidden_iframe" 
             onsubmit="submitted=true;">
         <div>
-            <table class="input">
-                <tr>
-                    <td>
-                        <a href="">[Stage 1]</a>
-                    </td>
-                    <td>
-                        <input type="text" name="entry.684394994">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="">[Stage 2]</a>
-                    </td>
-                    <td>
-                        <input type="text" name="entry.554699986">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="">[Stage 3]</a>
-                    </td>
-                    <td>
-                        <input type="text" name="entry.608187336">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="">[Stage 4]</a>
-                    </td>
-                    <td>
-                        <input type="text" name="entry.1612735257">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="">[Stage 5]</a>
-                    </td>
-                    <td>
-                        <input type="text" name="entry.962568321">
-                    </td>
-                </tr>
-            </table>
-            <input type="submit"></input>
-            
+            <div class="flex-row">
+                <div>
+                <table class="input">
+                    <tr>
+                        <td>
+                            <a href="">[Stage 1]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.684394994">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">[Stage 2]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.554699986">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">[Stage 3]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.608187336">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">[Stage 4]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.1612735257">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">[Stage 5]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.962568321">
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit"></input>
+                </div>
+                <div id="scoreboardContainer">
+                    fuck
+                </div>
+            </div>
         </div>
         </form>
-        <div id="scoreboardContainer"></div>
         <script type="text/javascript">var submitted=false;</script>
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"     
         onload="if(submitted) {window.location='';}"></iframe>
