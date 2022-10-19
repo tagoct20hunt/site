@@ -25,11 +25,11 @@ function pushTable(scores){
       $.each(item, function(a, subitem) {
           if(a != 0) 
             if(subitem == 0 || subitem == "#N/A") {
-              $tr.append('<tr class="zero">'+ "-" + '</tr>');
+              $tr.append('<tr /><td class="zero">'+ "-" + '</td>');
             } else {
-            $tr.append('<tr class="nonzero">'+ "-" + '</tr>');
+            $tr.append('<tr /><td class="nonzero">'+ "-" + '</td>');
           } else {
-            $tr.append('<tr class="teamtitle">'+ subitem + '</tr>');
+            $tr.append('<tr /><td class="teamtitle">'+ subitem + '</td>');
           }
       });
   });
