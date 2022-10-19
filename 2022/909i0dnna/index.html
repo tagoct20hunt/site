@@ -1,0 +1,43 @@
+<HTML>
+<!DOCTYPE html>
+<html lang="en">
+<title> October 20th Slide 6 </title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script defer src="script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #evil-button {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <button id="evil-button">Oct 20 Answer</button>
+</body>
+<script type="text/javascript" src="script.js"
+//If you're reading this it's too late
+    var colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+
+    var i = 1;
+
+    window.setInterval(function(){
+        document.body.style.backgroundColor = colors[i];
+        i++;
+        if (i === colors.length){
+            i=0;
+        }
+    }, 1000);
+</script>
+</html>
