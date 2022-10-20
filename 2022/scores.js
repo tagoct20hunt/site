@@ -11,7 +11,7 @@
 
     console.log("Spreadsheet retrieved");
     console.log(rows);
-    pushTable(rows, "scoreboardContainer");
+    pushTable(transpose(rows), "scoreboardContainer");
    }
     })
     .fail((e) => console.log(e.status));
@@ -44,3 +44,9 @@ function pushTable(scores, id) {
   }
   document.getElementById(id).appendChild(wrap);
 };
+
+function transpose(matrix) {
+  return matrix.reduce((prev, next) => next.map((item, i) =>
+    (prev[i] || []).concat(next[i])
+  ), []);
+}
