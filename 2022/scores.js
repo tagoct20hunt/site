@@ -44,14 +44,3 @@ function pushTable(scores, id) {
   }
   document.getElementById(id).appendChild(wrap);
 };
-
-var x = [
-  [1,1,1],
-  [2,1,2],
-  [1,3,0],
-  [5,7,1],
-  [1,4,9],
-  ["asdf","asdf","asdf"]
-];
-
-pushTable(x, 'scoreboardContainer');
