@@ -20,23 +20,20 @@ function pushTable(scores){
   var $table = $('<table id="scoreboard"/>');
 
   $.each(scores, function(i, item){
-      var $tr = $('<tr />');
+      var $tr = $('');
       $tr.appendTo($table);
       $.each(item, function(a, subitem) {
           if(a != 0) 
             if(subitem == 0 || subitem == "#N/A") {
-              $tr.append('<td class="zero">'+ "-" + '</td>');
+              $tr.append('<tr><td class="zero">'+ "-" + '</td></tr>');
             } else {
-            $tr.append('<td class="nonzero">'+ "-" + '</td>');
+            $tr.append('<tr><td class="nonzero">'+ "-" + '</td></tr>');
           } else {
-            $tr.append('<td class="teamtitle">'+ subitem + '</td>');
+            $tr.append('<tr><td class="teamtitle">'+ subitem + '</td></tr>');
           }
       });
   });
   
   $.each(scores, function(i, item){
-      $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
-      });
-
   $("#scoreboardContainer").append($table);
 };
