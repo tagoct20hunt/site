@@ -11,28 +11,36 @@
 
     console.log("Spreadsheet retrieved");
     console.log(rows);
-    pushTable(rows);
+    pushTable(rows, scoreboardContainer);
    }
     })
     .fail((e) => console.log(e.status));
 
-function pushTable(scores){
-  var $table = $('<table id="scoreboard"/>');
+function pushTable(scores, id) {
+  var wrap = document.createElement('table');
 
-  $.each(scores, function(i, item){
-      var $tr = $('');
-      $tr.appendTo($table);
-      $.each(item, function(a, subitem) {
-          if(a != 0) 
-            if(subitem == 0 || subitem == "#N/A") {
-              $tr.append('<tr><td class="zero">'+ "-" + '</td></tr>');
-            } else {
-            $tr.append('<tr><td class="nonzero">'+ "-" + '</td></tr>');
-          } else {
-            $tr.append('<tr><td class="teamtitle">'+ subitem + '</td></tr>');
-          }
-      });
-  });
-
-  $("#scoreboardContainer").append($table);
+  for(var i = 0; i < scores.length; i++) {
+    var subwrap = document.createElement('tr');
+    for(var j = 0; j < scores[i].length; j++) {
+      var cell = document.createElement('td');
+      var span = document.createElement('span');
+      var score = scores[i][j];
+      if(i != (scores.length - 1)) {
+        span.innerHTML += "-";
+        if(score == "#N/A" || score == 0) {
+          span.classList += "zero";
+        } else {
+          span.classList += "nonzero";
+        } 
+      } else {
+        console.log("shit");
+        span.classList += "team";
+        span.innerHTML += score;
+      }
+      cell.appendChild(span);
+      subwrap.appendChild(cell);
+    }
+    wrap.appendChild(subwrap);
+  }
+  document.getElementById(id).appendChild(wrap);
 };

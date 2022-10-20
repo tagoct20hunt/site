@@ -20,7 +20,7 @@
             }
             table, tr, td {
                 margin: 0px;
-                padding: 0px;
+                padding: 5px;
                 border-collapse: collapse;
             }
             input {
@@ -28,10 +28,36 @@
             }
             img {
                 float: right;
+                width: 10em;
                 filter: drop-shadow(0 0 0.5em rgba(255, 69, 0, 1));
             }
+            td > span {
+                height: inherit;
+                width: inherit;
+                margin: auto auto;
+                display: table;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 5px;
+            }
+            .zero {
+                color: gray;
+                background-color: gray;
+                width: 1em;
+            }
             .nonzero {
-                color: red;
+                color: rgba(255,69,0,1);
+                background-color: rgba(255,69,0,1);
+                width: 1em;
+            }
+            .team {
+                position: relative;
+                transform: rotate(0deg);
+                left: 0;
+                writing-mode: vertical-rl;
+                width: 1em;
             }
             .flex-row {
                 display: flex;
@@ -50,7 +76,7 @@
                     <span id="time" class="data"></span>
                 </td>
                 <td style="width: 100%">
-                    <img src="favicon_stage.png">
+                    <img src="pumpmax2.png">
                 </td>
             </tr>
         </table>
