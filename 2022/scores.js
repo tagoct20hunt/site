@@ -11,12 +11,12 @@
 
     console.log("Spreadsheet retrieved");
     console.log(rows);
-    pushTable(transpose(rows), "scoreboardContainer");
+    pushTable(transpose(rows), "scoreboardContainer", "groupContainer");
    }
     })
     .fail((e) => console.log(e.status));
 
-function pushTable(scores, id) {
+function pushTable(scores, id, id2) {
   var wrap = document.createElement('table');
 
   for(var i = 0; i < scores.length; i++) {
@@ -41,6 +41,11 @@ function pushTable(scores, id) {
       subwrap.appendChild(cell);
     }
     wrap.appendChild(subwrap);
+    
+    var group = document.createElement('option');
+    group.value += scores[scores.length-1][(i)];
+    group.innerHTML += scores[scores.length-1][(i)];
+    document.getElementById(id2).appendChild(group);
   }
   document.getElementById(id).appendChild(wrap);
 };
@@ -49,4 +54,4 @@ function transpose(matrix) {
   return matrix.reduce((prev, next) => next.map((item, i) =>
     (prev[i] || []).concat(next[i])
   ), []);
-}
+};
