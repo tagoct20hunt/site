@@ -199,3 +199,7 @@ table, tr, td {
         margin-left: 10px;
     }
 }
+.underline {
+    text-decoration: underline;
+    cursor: pointer;
+}
