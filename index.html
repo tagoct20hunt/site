@@ -1,58 +1,193 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>
-        home - widemax
-    </title>
-	<link rel="shortcut icon" type="image/png" href="./favicon.png"/>
-	<style>
-		body {
-			font: 1.1em/1.5em sans-serif;
-			max-width: 55em;
-			margin: 1em auto;
-			padding: 0 .6em;
-		}
-		small {
-			font: 1.0em/1.0em serif;
-		}
-		div {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		marquee {
-			width: 50%;
-			behavior: alternate;
-		}
-	</style>
-</head>
-<body>
-	
-	<div>
-		<img src="wip.gif">
-		<br>
-		<marquee><h1>under construction...</h1></marquee>
-	</div>
-	<hr>
-	<p>
-	Big things are happening this year: the official Tag Scavenger Hunt resumes on October 20th. Stay tuned for more information - we hope you choose to participate.
-	</p>
-	<p>
-	For the unfamiliar with the October 20th tradition, or those who chose not to participate in past years, an archive of the last two years is documented below.
-	</p>
-	<details>
-		<summary><a href="https://docs.google.com/presentation/d/1xU2O-bG7dbKGtdHqYAbjDTgSZGdo3hyqCXRV4mwETvY/edit#slide=id.p">2020</a></summary>
-		<span>A google slide-based puzzle in which successive slides add together to form a bit.ly link leading to the next stage. 10 stages, the last of which is yet unsolved.</span>
-	</details>
-	<details>
-		<summary><a href="./2021/">2021</a></summary>
-		<span>A static site with (mostly) contained single-page puzzles, designed with a final entry in mind. 5 stages, of which 3 and 5 remain unsolved.</span>
-	</details>
-	<p>
-	Until then, take care,<br>
-		<small><i>
-		Jack and Maxim
-		</i></small>
-	</p>
-</body>
+    <head>
+        <title>
+            Oct20 2021
+        </title>
+        <link rel="icon" href="favicon.png">
+        <style>
+            body {
+                font: 1.1em/1.5em sans-serif;
+                max-width: 55em;
+                margin: 1em auto;
+                padding: 0 .6em;
+            }
+            .data, a {
+                color: rgba(255, 69, 0, 1);
+                text-decoration: none
+            }
+            .data:hover, a:hover {
+                text-decoration: underline;
+            }
+            table, tr, td {
+                margin: 0px;
+                padding: 5px;
+                border-collapse: collapse;
+            }
+            img {
+                float: right;
+                width: 10em;
+                filter: drop-shadow(0 0 0.5em rgba(255, 69, 0, 1));
+            }
+            td {
+                text-align: center;
+            }
+            .submit {
+                background-color: rgba(255, 69, 0, 1);
+                border: none;
+                color: white;
+                padding: 0.5em 1em;
+                font-size: inherit;
+            }
+            .submit:hover {
+                cursor: pointer;
+            }
+            td > span {
+                height: inherit;
+                width: inherit;
+                margin: auto auto;
+                display: table;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 5px;
+            }
+            .zero {
+                color: gray;
+                background-color: gray;
+                width: 1em;
+            }
+            .nonzero {
+                color: rgba(255,69,0,1);
+                background-color: rgba(255,69,0,1);
+                width: 1em;
+            }
+            .team {
+                position: relative;
+                transform: rotate(0deg);
+                left: 0;
+                writing-mode: vertical-rl;
+                width: 1em;
+            }
+            .flex-row {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                width: 100%;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <h1>Tag Scavenger Hunt</h1>
+                    <span id="time" class="data"></span>
+                </td>
+                <td style="width: 100%">
+                    <img src="pumpmax.png">
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <div>
+            Welcome to the annual October 20th Scavenger Hunt, a collection of referential puzzles and media. There are 5 stages this year, which for the most part attempt to be self-contained, although some may require context. Good luck, and enjoy the festivities!
+        </div>
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdnD2NL_6QJy9n4uFlzIxyjYD_T0fDF1-5h20UkeifE0y5CTQ/formResponse" method="POST" target="hidden_iframe" 
+            onsubmit="submitted=true;">
+        <div>
+            <div class="flex-row">
+                <div>
+                <table class="input">
+                    <tr>
+                        <td>
+                            <a href="./stage1/">[Stage 1]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.684394994">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="./stage2/">[Stage 2]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.554699986">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="./stage3/">[Stage 3]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.608187336">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="./stage4/">[Stage 4]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.1612735257">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="./stage5/">[Stage 5]</a>
+                        </td>
+                        <td>
+                            <input type="text" name="entry.962568321">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" class="submit" value="[Submit]"></input>
+                        </td>
+                        <td>
+                            <select id="groupContainer" name="entry.2033642382"></select>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                <div id="scoreboardContainer">
+                </div>
+            </div>
+        </div>
+        </form>
+        <p>
+            Archive links to the previous two years
+        </p>
+        <details>
+            <summary><a href="https://docs.google.com/presentation/d/1xU2O-bG7dbKGtdHqYAbjDTgSZGdo3hyqCXRV4mwETvY/edit#slide=id.p">2020</a></summary>
+            <span>A google slide-based puzzle in which successive slides add together to form a bit.ly link leading to the next stage. 10 stages, the last of which is yet unsolved.</span>
+        </details>
+        <details>
+            <summary><a href="./2021/">2021</a></summary>
+            <span>A static site with (mostly) contained single-page puzzles, designed with a final entry in mind. 5 stages, of which 3 and 5 remain unsolved.</span>
+        </details>
+        <script type="text/javascript">var submitted=false;</script>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"     
+        onload="if(submitted) {window.location='';}"></iframe>
+    </body>
+    <script>
+        function updateClock() {
+            var now = new Date(),
+                months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+                time = now.getHours() + ':' + ("0" + now.getMinutes()).slice(-2),
+    
+                date = [months[now.getMonth()],
+                        now.getDate() + ",", 
+                        now.getFullYear()].join(' ');
+    
+                sec = now.getSeconds();
+    
+            document.getElementById('time').innerHTML = "[" + [date, time].join(', ') + "]";
+            
+            setTimeout(updateClock, 1000);
+        }
+        updateClock();
+    </script>
+    <script src="scores.js"></script>
 </html>

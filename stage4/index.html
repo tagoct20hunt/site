@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>
+		Oct. 20 - Stage 4
+	</title>
+	<link rel="icon" href="../favicon_stage.png">
+	<style>
+		body {
+            font: 1.1em/1.5em sans-serif;
+            max-width: 55em;
+            margin: 1em auto;
+            padding: 0 .6em;
+        }
+		:root {
+			--box: black;
+			--border: #blue;
+			--plug: 
+			linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%), rgba(255,255,255,1);
+		}
+		table, tr, td {
+			border-collapse: collapse;
+			border: 3px solid var(--box);
+		}
+		td {
+			width: 3em;
+			max-width: 3em;
+			height: 3em;
+			max-height: 3em;
+			padding: 0px;
+			margin: 0px;
+			font-size: 10em;
+			font-size: 100%;
+			font-family: monospace;
+			font-size: 1em;
+		}
+		.row {
+			margin: 1em 1em;
+			display: flex;
+			gap: 1em;
+			justify-content: center;
+		}
+		.wall {
+			background-color: var(--box);
+			width: inherit;
+			height: inherit;
+		}
+		.ne, .es, .sw, .nw, .ns, .ew, .plug {
+			position: relative;
+			border: 0px;
+			height: inherit;
+		}
+		.ne:before, .es:before, .sw:before, .nw:before, .ns:before, .ew:before, .plug:before {
+			position: absolute;
+			content: '';
+			margin: 0;
+			padding: 0;
+			border-color: var(--border);
+			border-width: 5px;
+		}
+		.ns:before {
+			height: inherit;
+			left: 50%;
+			border-style: none solid none none;
+		}
+		.ew:before {
+			width: 100%;
+			top: 51%;
+			border-style: solid none none none;
+		}
+		.ne:before, .es:before, .sw:before, .nw:before {
+			width: 50%;
+			height: 50%;
+		}
+		.ne:before {
+			left: 51%;
+			border-style: none none solid solid;
+		}
+		.es:before {
+			left: 51%;
+			top: 51%;
+			border-style: solid none none solid;
+		}
+		.sw:before {
+			top: 51%;
+			border-style: solid solid none none;
+		}
+		.nw:before {
+			border-style: none solid solid none;
+		}
+		.plug {
+			background: var(--plug);
+		}
+		.plug:before {
+			width: 50%;
+			height: 50%;
+			top: 18%;
+			left: 18%;
+			border-style: solid solid solid solid;
+			border-color: black;
+			border-width: 3px;
+			background: white;
+		}
+		.change {
+			width: inherit;
+			height: inherit;
+			background-color: red;
+		}
+		.ans {
+			font-family: monospace;
+			background-color: black;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Snake</h1>
+	<span>Stage 4</span><br>
+	<a href="../">&gt; Return to stage entry</a>
+	<hr>
+	<div class="row">
+		<table>
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="plug"></div>
+				</td>
+				<td>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td><div class="plug"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		<table>
+			<tr>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="sw"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="sw"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="ns"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="plug"></div>
+				</td>
+				<td><div class="ns"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ns"></div>
+				</td>
+				<td><div class="ns"></div>
+				</td>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="plug"></div>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="sw"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="sw"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="ns"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="plug"></div>
+				</td>
+				<td><div class="ns"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ns"></div>
+				</td>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="sw"></div>
+				</td>
+				<td><div class="ns"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="plug"></div>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="sw"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="sw"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="ns"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="plug"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="es"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="nw"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="ne"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="ew"></div>
+				</td>
+				<td><div class="plug"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		<table>
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="plug"></div>
+				</td>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="wall"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="change"></div>
+				</td>
+				<td><div class="plug"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		<h1>3 permutations - <span class="ans">a2 a3 a4 b1 b2 b3 b4 c2</span></h1>
+	</div>
+	<div class="row">
+		<h1>↓↓↓</h1>
+	</div>
+	<div class="row">
+		<table>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+			</tr>
+			<tr>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="plug"></div></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td><div class="plug"></div></td>
+			</tr>
+			<tr>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="wall"></div></td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		<h1>lower bound of 1271 permutations - <span class="ans">???</span></h1>
+	</div>
+</body>
+</html>

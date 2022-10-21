@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" href="../favicon_stage.png">
+  <title>Oct. 20 - Stage 1</title>
+  <style>
+        body {
+            font: 1.1em/1.5em sans-serif;
+            max-width: 55em;
+            margin: 1em auto;
+            padding: 0 .6em;
+        }
+        #grid3 {
+            display: flex;
+            align-items: flex-start;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+        }
+		#fmenu {
+			visibility: hidden;
+			display: flex;
+            flex-direction: column;
+		}
+		#init {
+			visibility: visible;
+		}
+		img {
+			display: block;
+			width: 25%;
+			margin: auto;
+		}
+  </style>
+</head>
+<body>
+	<h1>Landline</h1>
+	<span>Stage 1</span><br>
+	<a href="../">&gt; Return to stage entry</a>
+	<hr>
+    <div id="grid3">
+		<fieldset>
+			<legend>
+				Frequency tester
+			</legend>
+			<div id="fmenu">
+				<div><input type="checkbox" class="hz" data-source=1209>
+					<label>1209hz</label></div>
+				<div><input type="checkbox" class="hz" data-source=1336>
+					<label>1336hz</label></div>
+				<div><input type="checkbox" class="hz" data-source=1477>
+					<label>1477hz</label></div>
+				<div><input type="checkbox" class="hz" data-source=1633>
+					<label>1633hz</label></div>
+				<div><input type="checkbox" class="hz" data-source=697>
+					<label>697hz</label></div>
+				<div><input type="checkbox" class="hz" data-source=770>
+					<label>770hz</label></div>
+				<div><input type="checkbox" class="hz" data-source=852>
+					<label>852hz</label></div>
+				<div><input type="checkbox" class="hz" data-source=941>
+					<label>941hz</label></div>
+				<button onmousedown="sound()" onmouseup="mute()" onmouseleave="mute()">Listen</button>
+				<button onmousedown="init()" id="init">Load audio</button>
+			</div>
+			<p>
+			</p>
+		</fieldset>
+		<canvas id="graph"></canvas>
+	</div>
+	<hr>
+    <p>
+		For further information, call the number +1 916-235-3935.
+	</p>
+	<a href="CLICK_ME.exe" download="fuck"><img src="landline.jpg"></a>
+</body>
+<script>
+const canvas = document.getElementById("graph");
+
+var freq = [];
+
+canvas.width = 800;
+canvas.height = 500;
+
+var height = canvas.height;
+var width = canvas.width;
+
+const max_x = 0.010;
+const min_x = 0;
+var max_y = freq.length;
+var min_y = 0 - freq.length;
+
+var xstep = (max_x - min_x) / width;
+
+
+function normalx(x) {
+	return Math.round(
+		((x - min_x) / (max_x - min_x)) * width
+	);
+}
+function normaly(y) {
+	return Math.round(
+		((y - min_y) / (max_y - min_y)) * height
+	);
+}
+
+function render() {
+	if(canvas.getContext) {
+		min_y = 0 - freq.length;
+		max_y = freq.length;
+		
+		const ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, width, height);
+		
+		ctx.fillRect(normalx(0),normaly(0),width,1);
+
+		for (var x = min_x; x <= max_x; x += xstep) {		
+			var y = 0;
+			var xd = x + xstep;
+			var yd = 0;
+			var fix = 0;
+			
+			for (var i = 0; i < freq.length; i++) {
+				yd = yd + Math.sin(2 * Math.PI * xd * freq[i]);
+				y = y + Math.sin(2 * Math.PI * x * freq[i]);
+			}
+			if (normaly(yd) == normaly(y)) {
+				fix = 1;
+			}
+			ctx.fillRect(normalx(x), normaly(y), 1, normaly(yd) - normaly(y) + fix);
+		}
+	}
+}
+
+var actx = new AudioContext();
+var osc = null;
+var g = null;
+var flist = [];
+
+function sound() {
+	for (var i = 0; i < freq.length; i++) { 
+		flist[i] = actx.createOscillator();
+		
+		g = actx.createGain();
+		
+		flist[i].connect(g);
+		flist[i].type = 'sine';
+		flist[i].frequency.value = freq[i];
+		g.connect(actx.destination);
+		flist[i].start(0);
+		
+		g.gain.value = 1 / freq.length;
+	}
+}
+
+
+function mute() {
+	if(flist.length != 0) {
+		for (var i = 0; i < freq.length; i++) {
+			flist[i].disconnect();
+		}
+	}
+}
+
+const freqs = document.getElementById("fmenu");
+freqs.addEventListener("click", updateFreqs, false);
+
+function updateFreqs() {
+	const button = document.querySelectorAll(".hz");
+	freq = [];
+	var l = button.length
+	var h = button.length / 2
+	var c = 0;
+	var d = -1;
+	for (var i = 0; i < l; i++) {
+		button[i].disabled = false;
+		if(button[i].checked) {
+			d = Math.floor(i / h);
+			freq.push(button[i].dataset.source);
+			c++;
+		}
+		render();
+	}
+	if(c >= 2) {
+		for (var j = 0; j < l; j++) {
+			if(!button[j].checked) {
+				button[j].disabled = true;
+			}
+		}
+	}
+	if(d != -1) {
+		for (var k = 0; k < (l/2); k++) {
+			if(!button[k + (d*h)].checked) {
+					button[k + (d*h)].disabled = true;
+				}
+		}
+	}
+}
+
+function init() {
+	if(actx.state === 'suspended') {
+		ini = document.getElementById("init");
+		ini.disabled = true;
+		actx.resume().then(() => {
+		fmenu = document.getElementById("fmenu");
+		fmenu.style.visibility = "visible";
+		ini.style.display = "none";
+		updateFreqs();
+		});
+	}
+}
+
+render();
+
+</script>
+</html>

@@ -11,32 +11,48 @@
 
     console.log("Spreadsheet retrieved");
     console.log(rows);
-    pushTable(rows);
+    pushTable(transpose(rows), "scoreboardContainer", "groupContainer");
    }
     })
     .fail((e) => console.log(e.status));
 
-function pushTable(scores){
-  var $table = $('<table id="scoreboard"/>');
+function pushTable(scores, id, id2) {
+  var wrap = document.createElement('table');
 
-  $.each(scores, function(i, item){
-      var $tr = $('<tr />');
-      $tr.appendTo($table);
-      $.each(item, function(a, subitem) {
-          if(a != 0) 
-            if(subitem == 0 || subitem == "#N/A") {
-              $tr.append('<td class="zero">'+ "-" + '</td>');
-            } else {
-            $tr.append('<td class="nonzero">'+ "-" + '</td>');
-          } else {
-            $tr.append('<td class="teamtitle">'+ subitem + '</td>');
-          }
-      });
-  });
-  
-  $.each(scores, function(i, item){
-      $("#groupContainer").append('<option value="' + item[0] + '" required>' + item[0] + '</option>');
-      });
+  for(var i = 0; i < scores.length; i++) {
+    var subwrap = document.createElement('tr');
+    for(var j = 0; j < scores[i].length; j++) {
+      var cell = document.createElement('td');
+      var span = document.createElement('span');
+      var score = scores[i][j];
+      if(i != (scores.length - 1)) {
+        span.innerHTML += "-";
+        if(score == "#N/A" || score == 0) {
+          span.classList += "zero";
+        } else {
+          span.classList += "nonzero";
+        } 
+      } else {
+        span.classList += "team";
+        span.innerHTML += score;
+      }
+      cell.appendChild(span);
+      subwrap.appendChild(cell);
+    }
+    wrap.appendChild(subwrap);
+  }
+  document.getElementById(id).appendChild(wrap);
 
-  $("#scoreboardContainer").append($table);
+  for(var k = 0; k < scores[scores.length-1].length; k++) {
+    var group = document.createElement('option');
+    group.value += scores[scores.length-1][(k)];
+    group.innerHTML += scores[scores.length-1][(k)];
+    document.getElementById(id2).appendChild(group);
+  };
+};
+
+function transpose(matrix) {
+  return matrix.reduce((prev, next) => next.map((item, i) =>
+    (prev[i] || []).concat(next[i])
+  ), []);
 };

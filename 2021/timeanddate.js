@@ -14,3 +14,7 @@ function updateClock() {
     setTimeout(updateClock, 1000);
 }
 updateClock();
+
+function lert() {
+    alert("Lucy");
+  }
