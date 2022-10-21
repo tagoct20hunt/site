@@ -33,7 +33,6 @@ function pushTable(scores, id, id2) {
           span.classList += "nonzero";
         } 
       } else {
-        console.log("shit");
         span.classList += "team";
         span.innerHTML += score;
       }
@@ -41,13 +40,15 @@ function pushTable(scores, id, id2) {
       subwrap.appendChild(cell);
     }
     wrap.appendChild(subwrap);
-    
-    var group = document.createElement('option');
-    group.value += scores[scores.length-1][(i)];
-    group.innerHTML += scores[scores.length-1][(i)];
-    document.getElementById(id2).appendChild(group);
   }
   document.getElementById(id).appendChild(wrap);
+
+  for(var k = 0; k < scores[scores.length-1].length; k++) {
+    var group = document.createElement('option');
+    group.value += scores[scores.length-1][(k)];
+    group.innerHTML += scores[scores.length-1][(k)];
+    document.getElementById(id2).appendChild(group);
+  };
 };
 
 function transpose(matrix) {
